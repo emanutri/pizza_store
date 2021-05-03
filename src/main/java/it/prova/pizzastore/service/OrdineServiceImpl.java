@@ -3,54 +3,52 @@ package it.prova.pizzastore.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import it.prova.pizzastore.model.Ingrediente;
 import it.prova.pizzastore.model.Ordine;
 import it.prova.pizzastore.repository.ordine.OrdineRepository;
 
+@Service
 public class OrdineServiceImpl implements OrdineService {
 
 	@Autowired
 	private OrdineRepository repository;
 
-	@Override
+	@Transactional(readOnly = true)
 	public List<Ordine> listAllElements() {
 		return (List<Ordine>) repository.findAll();
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public Ordine caricaSingoloElemento(Long id) {
 		return repository.findById(id).orElse(null);
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public Ordine caricaSingoloElementoEager(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findOneEager(id).orElse(null);
 	}
 
-	@Override
+	@Transactional
 	public void aggiorna(Ordine ordineInstance) {
-		// TODO Auto-generated method stub
-
+		repository.save(ordineInstance);
 	}
 
-	@Override
+	@Transactional
 	public void inserisciNuovo(Ordine ordineInstance) {
-		// TODO Auto-generated method stub
-
+		repository.save(ordineInstance);
 	}
 
-	@Override
+	@Transactional
 	public void rimuovi(Ordine ordineInstance) {
-		// TODO Auto-generated method stub
+		repository.delete(ordineInstance);
 
 	}
 
-	@Override
+	@Transactional(readOnly = true)
 	public List<Ordine> findByExample(Ordine example) {
-		// TODO Auto-generated method stub
-		return null;
+		return repository.findByExample(example);
 	}
 
 }

@@ -8,7 +8,7 @@ import org.springframework.data.repository.CrudRepository;
 import it.prova.pizzastore.model.StatoUtente;
 import it.prova.pizzastore.model.Utente;
 
-public interface UtenteRepository extends CrudRepository<Utente, Long> {
+public interface UtenteRepository extends CrudRepository<Utente, Long>, CustomUtenteRepository{
 
 	Utente findByUsernameAndPassword(String username, String password);
 

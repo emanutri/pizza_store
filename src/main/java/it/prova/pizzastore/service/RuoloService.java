@@ -9,13 +9,12 @@ public interface RuoloService {
 
 	public Ruolo caricaSingoloElemento(Long id);
 
-	public Ruolo caricaSingoloElementoEager(Long id);
+	public void aggiorna(Ruolo ruoloInstance);
 
-	public void aggiorna(Ruolo filmInstance);
+	public void inserisciNuovo(Ruolo ruoloInstance);
 
-	public void inserisciNuovo(Ruolo filmInstance);
+	public void rimuovi(Ruolo ruoloInstance);
 
-	public void rimuovi(Ruolo filmInstance);
+	public Ruolo cercaPerDescrizioneECodice(String string, String string2);
 
-	public List<Ruolo> findByExample(Ruolo example);
 }

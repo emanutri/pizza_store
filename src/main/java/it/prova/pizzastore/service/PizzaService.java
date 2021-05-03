@@ -11,11 +11,11 @@ public interface PizzaService {
 
 	public Pizza caricaSingoloElementoEager(Long id);
 
-	public void aggiorna(Pizza filmInstance);
+	public void aggiorna(Pizza pizzaInstance);
 
-	public void inserisciNuovo(Pizza filmInstance);
+	public void inserisciNuovo(Pizza pizzaInstance);
 
-	public void rimuovi(Pizza filmInstance);
+	public void rimuovi(Pizza pizzaInstance);
 
 	public List<Pizza> findByExample(Pizza example);
 }

@@ -9,13 +9,13 @@ public interface UtenteService {
 
 	public Utente caricaSingoloElemento(Long id);
 
-	public Utente caricaSingoloElementoEager(Long id);
+	public void aggiorna(Utente utenteInstance);
 
-	public void aggiorna(Utente filmInstance);
+	public void inserisciNuovo(Utente utenteInstance);
 
-	public void inserisciNuovo(Utente filmInstance);
-
-	public void rimuovi(Utente filmInstance);
+	public void rimuovi(Utente utenteInstance);
 
 	public List<Utente> findByExample(Utente example);
+
+	public Utente findByUsernameAndPassword(String username, String password);
 }
