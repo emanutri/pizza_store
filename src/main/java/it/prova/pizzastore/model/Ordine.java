@@ -66,6 +66,12 @@ public class Ordine {
 		this.closed = closed;
 	}
 
+	public Ordine(Long id, Date data, String codice) {
+		this.id = id;
+		this.data = data;
+		this.codice = codice;
+	}
+
 	public Long getId() {
 		return id;
 	}

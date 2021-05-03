@@ -40,7 +40,6 @@ public class Pizza {
 
 	public Pizza(Long id, String descrizione, String codice, Double prezzoBase, Boolean attivo,
 			Set<Ingrediente> ingredienti) {
-		super();
 		this.id = id;
 		this.descrizione = descrizione;
 		this.codice = codice;
@@ -50,11 +49,17 @@ public class Pizza {
 	}
 
 	public Pizza(String descrizione, String codice, Double prezzoBase, Boolean attivo) {
-		super();
 		this.descrizione = descrizione;
 		this.codice = codice;
 		this.prezzoBase = prezzoBase;
 		this.attivo = attivo;
+	}
+
+	public Pizza(Long id, String descrizione, String codice, Double prezzoBase) {
+		this.id = id;
+		this.descrizione = descrizione;
+		this.codice = codice;
+		this.prezzoBase = prezzoBase;
 	}
 
 	public Long getId() {

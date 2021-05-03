@@ -48,6 +48,13 @@ public class Ingrediente {
 		this.codice = codice;
 	}
 
+	public Ingrediente(Long id, String descrizione, Double prezzo, String codice) {
+		this.id = id;
+		this.descrizione = descrizione;
+		this.prezzo = prezzo;
+		this.codice = codice;
+	}
+
 	public Long getId() {
 		return id;
 	}
