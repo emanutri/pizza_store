@@ -2,7 +2,7 @@
 <html lang="it">
   <head>
     
-    <jsp:include page="./header.jsp" />
+    <jsp:include page="../header.jsp" />
     
     <!-- Custom styles for this template -->
     <link href="${pageContext.request.contextPath}/assets/css/global.css" rel="stylesheet" type="text/css">
@@ -12,11 +12,11 @@
 		}	
     </style>
     
-    <title>Gestione Pizza Store</title>
+    <title>Gestione Consegne</title>
   </head>
   <body>
   
-	<jsp:include page="./navbar.jsp" />
+	<jsp:include page="../navbar.jsp" />
   
   
 	<main role="main">
@@ -24,7 +24,7 @@
 	  <!-- Main jumbotron for a primary marketing message or call to action -->
 	  <div class="jumbotron" >
 	    <div class="container">
-	      <h1 class="display-3">Benvenuto alla Gestione del Pizza Store</h1>
+	      <h1 class="display-3">Benvenuto alla Gestione delle consegne del Pizza Store</h1>
 	      <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
 	    </div>
 	  </div>
@@ -42,23 +42,16 @@
 	    <!-- Example row of columns -->
 	    <div class="row">
 	      <div class="col-md-6">
-	        <h2>Gestione Registi</h2>
-	        <p>Questa funzionalità è realtiva alla Gestione dei Registi</p>
-	        <p><a class="btn btn-primary" href="PrepareSearchRegistaServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
+	        <h2>Gestione Consegne</h2>
+	        <p>Gestisci le tue consegne</p>
+	        <p><a class="btn btn-primary" href="PrepareSearchOrdineServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
 	      </div>
-	      <div class="col-md-6">
-	        <h2>Gestione Film</h2>
-	        <p>Questa funzionalità è realtiva alla Gestione di Film</p>
-	        <p><a class="btn btn-primary" href="PrepareSearchFilmServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
-	      </div>
-	    </div>
-	    
 	    <hr>
 	
-	  </div> <!-- /container -->
-	
+	  </div> 
+	</container>
 	</main>
 	
-	<jsp:include page="./footer.jsp" />
+	<jsp:include page="../footer.jsp" />
   </body>
 </html>

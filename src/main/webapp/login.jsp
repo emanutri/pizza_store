@@ -42,12 +42,18 @@
 	  <link href="${pageContext.request.contextPath}/assets/css/signin.css" rel="stylesheet">
 	</head>
 	<body class="text-center">
-		
+		<div class="alert alert-success alert-dismissible fade show ${successMessage==null?'d-none': ''}" role="alert">
+		  ${successMessage}
+		  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		    <span aria-hidden="true">&times;</span>
+		  </button>
+		</div>
 	   	<form class="form-signin" action="${pageContext.request.contextPath}/LoginServlet" method="post" novalidate="novalidate">
 	   	
 		   	<div class="alert alert-danger alert-dismissible fade show ${errorMessage==null?'d-none': ''}" role="alert">
 			  ${errorMessage}
 			</div>
+			
 			
 			
 		  <img class="mb-4" src="${pageContext.request.contextPath}/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72">
@@ -62,6 +68,7 @@
 		    </label>
 		  </div>
 		  <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+		  <a href="${pageContext.request.contextPath}/registration/PrepareRegistrationServlet">Registrati</a>
 		  <p class="mt-5 mb-3 text-muted">&copy; 2017-2020</p>
 		</form>
 	</body>

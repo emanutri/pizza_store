@@ -178,6 +178,22 @@ public class UtenteDTO {
 		}
 		this.setErrors(validationResult);
 	}
+	
+	public void validateRegistration() {
+		List<String> validationResult = new ArrayList<String>();
+
+		if (StringUtils.isBlank(this.nome))
+			validationResult.add("Il campo 'Nome' non può essere vuoto");
+		if (StringUtils.isBlank(this.cognome))
+			validationResult.add("Il campo 'Cognome' non può essere vuoto");
+		if (StringUtils.isBlank(this.username))
+			validationResult.add("Il campo 'username' non può essere vuoto");
+		if (this.stato == null)
+			validationResult.add("Il campo 'stato' non può essere vuoto");
+		if (this.dateCreated == null)
+			validationResult.add("Il campo 'dateCreated' non può essere vuoto");
+		this.setErrors(validationResult);
+	}
 
 	public boolean hasErrors() {
 		return this.errors != null && !this.errors.isEmpty();
@@ -243,5 +259,14 @@ public class UtenteDTO {
 
 	public void setOrdini(Set<Ordine> ordini) {
 		this.ordini = ordini;
+	}
+
+	public static UtenteDTO registerUtenteDTOFromInsertParams(String usernameParam, String passwordParam,
+			String nomeParam, String cognomeParam) {
+		UtenteDTO result = new UtenteDTO(usernameParam, passwordParam, nomeParam, cognomeParam);
+		result.setPassword(passwordParam);
+		result.setDateCreated(new Date());
+		result.setStato(StatoUtente.CREATO);
+		return result;
 	}
 }

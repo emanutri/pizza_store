@@ -1,6 +1,7 @@
 package it.prova.pizzastore.service;
 
 import java.util.List;
+import java.util.Set;
 
 import it.prova.pizzastore.model.Ruolo;
 
@@ -16,5 +17,6 @@ public interface RuoloService {
 	public void rimuovi(Ruolo ruoloInstance);
 
 	public Ruolo cercaPerDescrizioneECodice(String string, String string2);
-
+	
+	public Set<Ruolo> findByArrayIdParam(String[] ids);
 }

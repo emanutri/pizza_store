@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.prova.pizzastore.model.StatoUtente;
 import it.prova.pizzastore.model.Utente;
 import it.prova.pizzastore.repository.utente.UtenteRepository;
 
@@ -51,4 +52,8 @@ public class UtenteServiceImpl implements UtenteService {
 		return repository.findByUsernameAndPassword(username, password);
 	}
 
+	@Transactional(readOnly = true)
+	public Utente eseguiAccesso(String username, String password) {
+		return repository.findByUsernameAndPasswordAndStato(username, password, StatoUtente.ATTIVO);
+	}
 }

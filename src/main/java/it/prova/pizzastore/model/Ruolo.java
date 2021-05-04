@@ -12,8 +12,9 @@ import javax.persistence.Table;
 public class Ruolo {
 	
 	public static final String ROLE_ADMIN = "ADMIN_ROLE";
-	public static final String PIZZAIOLO_ROLE = "PIZZAIOLO_ROLE";
-	public static final String FATTORINO_ROLE = "FATTORINO_ROLE";
+	public static final String ROLE_PIZZAIOLO = "PIZZAIOLO_ROLE";
+	public static final String ROLE_FATTORINO = "FATTORINO_ROLE";
+	public static final String ROLE_NEW_USER = "NEW_USER_ROLE";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)

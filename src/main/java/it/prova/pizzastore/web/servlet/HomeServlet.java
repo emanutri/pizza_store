@@ -19,6 +19,10 @@ public class HomeServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		String successResult = request.getParameter("successResult");
+		if (StringUtils.isNotBlank(successResult) && successResult.equalsIgnoreCase("SUCCESS"))
+			request.setAttribute("successMessage", "Operazione effettuata con successo");
+		
 		String operationResult = request.getParameter("operationResult");
 		if (StringUtils.isNotBlank(operationResult) && operationResult.equalsIgnoreCase("NOT_ALLOWED"))
 			request.setAttribute("errorMessage", "Attenzione! Non si è autorizzati alla navigazione richiesta");
@@ -32,9 +36,15 @@ public class HomeServlet extends HttpServlet {
 	}
 
 	private RequestDispatcher getRequestDispatcherIfUserLoggedInOrNot(HttpServletRequest request) {
-		if (AuthenticationFilter.isUserLoggedIn(request))
-			return request.getRequestDispatcher("index.jsp");
-
+		if (AuthenticationFilter.isUserLoggedIn(request) && AuthenticationFilter.getUserLoggedIn(request).isAdmin()) {
+			return request.getRequestDispatcher("/utente/index.jsp");
+		}
+		if (AuthenticationFilter.isUserLoggedIn(request) && AuthenticationFilter.getUserLoggedIn(request).isPizzaiolo()) {
+			return request.getRequestDispatcher("/pizzaiolo/index.jsp");
+		}
+		if (AuthenticationFilter.isUserLoggedIn(request) && AuthenticationFilter.getUserLoggedIn(request).isFattorino()) {
+			return request.getRequestDispatcher("/fattorino/index.jsp");
+		}
 		return request.getRequestDispatcher("login.jsp");
 	}
 

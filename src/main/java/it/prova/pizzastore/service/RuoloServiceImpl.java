@@ -1,6 +1,8 @@
 package it.prova.pizzastore.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,7 +26,7 @@ public class RuoloServiceImpl implements RuoloService {
 	public Ruolo caricaSingoloElemento(Long id) {
 		return repository.findById(id).orElse(null);
 	}
-	
+
 	@Transactional
 	public void aggiorna(Ruolo ruoloInstance) {
 		repository.save(ruoloInstance);
@@ -39,10 +41,21 @@ public class RuoloServiceImpl implements RuoloService {
 	public void rimuovi(Ruolo ruoloInstance) {
 		repository.delete(ruoloInstance);
 	}
-	
+
 	@Override
 	@Transactional(readOnly = true)
 	public Ruolo cercaPerDescrizioneECodice(String descrizione, String codice) {
 		return repository.findByDescrizioneAndCodice(descrizione, codice);
+	}
+
+	@Transactional(readOnly = true)
+	public Set<Ruolo> findByArrayIdParam(String[] ids) {
+		Set<Ruolo> ruoli = new HashSet<>();
+		if (ids != null && ids.length > 0) {
+			for (String ruoloItem : ids) {
+				ruoli.add(repository.findById(Long.parseLong(ruoloItem)).get());
+			}
+		}
+		return ruoli;
 	}
 }

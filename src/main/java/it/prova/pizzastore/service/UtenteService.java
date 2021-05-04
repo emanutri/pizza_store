@@ -18,4 +18,6 @@ public interface UtenteService {
 	public List<Utente> findByExample(Utente example);
 
 	public Utente findByUsernameAndPassword(String username, String password);
+
+	public Utente eseguiAccesso(String username, String password);
 }
