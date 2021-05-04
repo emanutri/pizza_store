@@ -27,7 +27,7 @@
 		    </div>
 		    <div class='card-body'>
 
-					<form method="post" action="/utente/ExecuteSearchUtenteServlet" >
+					<form method="post" action="utente/ExecuteSearchUtenteServlet" >
 					
 						<div class="form-row">
 							<div class="form-group col-md-6">
@@ -53,13 +53,13 @@
 							</div>
 						</div>
 						
-						<h5>Ecc.....Da Completare aggiungendo il resto</h5> 
+						 
 							
 						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 						<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 					
 
-						<a class="btn btn-outline-primary ml-2" href="/utente/PrepareInsertUtenteServlet">Add New</a>
+						<a class="btn btn-outline-primary ml-2" href="utente/PrepareInsertUtenteServlet">Add New</a>
 						
 					</form>
 		    

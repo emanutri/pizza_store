@@ -37,19 +37,17 @@
 		    <span aria-hidden="true">&times;</span>
 		  </button>
 		</div>
-	  
-	  
 	    <!-- Example row of columns -->
 	    <div class="row">
 	      <div class="col-md-6">
 	        <h2>Gestione Utenze</h2>
 	        <p>Questa funzionalità è realtiva alla Gestione degli utenti del sistema</p>
-	        <p><a class="btn btn-primary" href="PrepareSearchUtenteServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
+	        <p><a class="btn btn-primary" href="utente/PrepareSearchUtenteServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
 	      </div>
 	      <div class="col-md-6">
 	        <h2>Report Ordini</h2>
 	        <p>Questa funzionalità è realtiva alla visione dei Report degli ordini</p>
-	        <p><a class="btn btn-primary" href="PrepareSearchOrdineServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
+	        <p><a class="btn btn-primary" href="utente/PrepareSearchOrdineServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
 	      </div>
 	    </div>
 	    
