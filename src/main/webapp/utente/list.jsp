@@ -63,18 +63,18 @@
 										<td>${utenteItem.username }</td>
 										<td>
 											<a class="btn  btn-sm btn-outline-secondary" href="ExecuteVisualizzaUtenteServlet?idUtente=${utenteItem.id }">Visualizza</a>
-											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="utente/PrepareModificaUtenteServlet?idUtente=${utenteItem.id }">Edit</a>
+											<a class="btn  btn-sm btn-outline-primary ml-2 mr-2" href="PrepareModificaUtenteServlet?idUtente=${utenteItem.id }">Edit</a>
 											
 											<c:if test = "${utenteItem.stato == 'CREATO'}">
-                                                <a class="btn btn-outline-success btn-sm" href="ExecuteDeleteUtenteServlet?idUtente=${utenteItem.id }">Attiva</a>
+                                                <a class="btn btn-outline-success btn-sm" href="ExecuteCambiaStatoUtenteServlet?idUtente=${utenteItem.id }">Attiva</a>
                                             </c:if>
                                             
                                             <c:if test = "${utenteItem.stato == 'DISABILITATO'}">
-                                                <a class="btn btn-outline-warning btn-sm" href="ExecuteDeleteUtenteServlet?idUtente=${utenteItem.id }">Abilita</a>
+                                                <a class="btn btn-outline-warning btn-sm" href="ExecuteCambiaStatoUtenteServlet?idUtente=${utenteItem.id }">Abilita</a>
                                             </c:if>
                                             
                                             <c:if test = "${utenteItem.stato == 'ATTIVO'}">
-                                                <a class="btn btn-outline-danger btn-sm" href="ExecuteDeleteUtenteServlet?idUtente=${utenteItem.id }">Disabilita</a>
+                                                <a class="btn btn-outline-danger btn-sm" href="ExecuteCambiaStatoUtenteServlet?idUtente=${utenteItem.id }">Disabilita</a>
                                             </c:if>
 									</tr>
 								</c:forEach>

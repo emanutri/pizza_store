@@ -8,4 +8,6 @@ public interface CustomUtenteRepository {
 
 	public List<Utente> findByExample(Utente example);
 
+	public Long countByAdmin();
+
 }

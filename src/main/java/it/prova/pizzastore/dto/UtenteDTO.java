@@ -220,6 +220,11 @@ public class UtenteDTO {
 				buildRuoliDTOFromRuoliModel(utenteModel), utenteModel.getOrdini());
 	}
 
+	public static UtenteDTO buildUtenteDTOFromModelNoRole(Utente utenteModel) {
+		return new UtenteDTO(utenteModel.getId(), utenteModel.getUsername(), utenteModel.getPassword(),
+				utenteModel.getNome(), utenteModel.getCognome(), utenteModel.getDateCreated(), utenteModel.getStato());
+	}
+
 	public static UtenteDTO buildUtenteDTOFromModelNoOrders(Utente utenteModel) {
 		return new UtenteDTO(utenteModel.getId(), utenteModel.getUsername(), utenteModel.getPassword(),
 				utenteModel.getNome(), utenteModel.getCognome(), utenteModel.getDateCreated(), utenteModel.getStato(),
@@ -248,6 +253,14 @@ public class UtenteDTO {
 		return result;
 	}
 
+	public static boolean validateUtenteDTOBean(UtenteDTO utenteInstance, String passwordRepeat) {
+		// prima controlliamo che non siano vuoti i parametri
+		if (!passwordRepeat.equals(utenteInstance.getPassword()) && passwordRepeat.isEmpty()){
+			return false;
+		}
+		return true;
+	}
+
 	public static UtenteDTO createUtenteDTOFromParams(String usernameParam, String passwordParam, String nomeParam,
 			String cognomeParam, List<RuoloDTO> ruoliParam) {
 
@@ -260,6 +273,12 @@ public class UtenteDTO {
 	public static List<UtenteDTO> createUtenteDTOListFromModelList(List<Utente> modelListInput) {
 		return modelListInput.stream().map(utenteEntity -> {
 			return UtenteDTO.buildUtenteDTOFromModel(utenteEntity);
+		}).collect(Collectors.toList());
+	}
+
+	public static List<UtenteDTO> createUtenteDTOListFromModelListNoRole(List<Utente> modelListInput) {
+		return modelListInput.stream().map(utenteEntity -> {
+			return UtenteDTO.buildUtenteDTOFromModelNoRole(utenteEntity);
 		}).collect(Collectors.toList());
 	}
 

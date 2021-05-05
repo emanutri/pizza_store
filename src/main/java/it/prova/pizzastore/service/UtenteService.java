@@ -5,6 +5,7 @@ import java.util.List;
 import it.prova.pizzastore.model.Utente;
 
 public interface UtenteService {
+
 	public List<Utente> listAllElements();
 
 	public Utente caricaSingoloElemento(Long id);
@@ -20,4 +21,10 @@ public interface UtenteService {
 	public Utente findByUsernameAndPassword(String username, String password);
 
 	public Utente eseguiAccesso(String username, String password);
+
+	public Utente caricaUtenteEager(Long id);
+
+	public boolean isTheLastAdministrator(long id);
+
+	public void cambiaStato(long id);
 }

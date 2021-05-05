@@ -40,24 +40,11 @@ public class ExecuteSearchUtenteServlet extends HttpServlet {
 		String statoParam = request.getParameter("stato");
 		String[] ruoloParam = request.getParameterValues("ruolo.id");
 		
-//		UtenteDTO utenteInstance = UtenteDTO.createUtenteDTOFromParams(usernameParam, nomeParam, cognomeParam,
-//				dataCreazioneParam, statoParam, RuoloDTO.createRuoloDTOListFromModelList(ruoloService.findByArrayIdParam(ruoloParam)));
-//
-//		System.out.println("testi di debugghi "+utenteInstance.getUsername());
-//		Utente utenteInstance = new Utente();
-//		utenteInstance.setUsername(usernameParam);
-//		utenteInstance.setNome(nomeParam);
-//		utenteInstance.setCognome(cognomeParam);
-//		utenteInstance.setDateCreated(Utility.parseDateFromString(dataCreazioneParam));
-		
-		
 		try {
 			
 			UtenteDTO utenteInstance = UtenteDTO.createUtenteDTOFromParams(usernameParam, nomeParam, cognomeParam,
 					dataCreazioneParam, statoParam, RuoloDTO.createRuoloDTOListFromModelList(ruoloService.findByArrayIdParam(ruoloParam)));
 
-//			request.setAttribute("utenti_list_attribute", UtenteDTO
-//					.createUtenteDTOListFromModelList(utenteService.findByExample(utenteInstance.buildUtenteModel())));
 			List<Utente> utentiInst = utenteService.findByExample(utenteInstance.buildUtenteModel());
 			request.setAttribute("utenti_list_attribute", UtenteDTO
 					.createUtenteDTOListFromModelList(utentiInst));
