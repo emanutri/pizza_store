@@ -1,6 +1,5 @@
 package it.prova.pizzastore.repository.utente;
 
-import java.util.List;
 
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.repository.CrudRepository;
@@ -16,5 +15,4 @@ public interface UtenteRepository extends CrudRepository<Utente, Long>, CustomUt
 	@EntityGraph(attributePaths = { "ruoli" })
 	Utente findByUsernameAndPasswordAndStato(String username, String password, StatoUtente stato);
 
-	List<Utente> findByExample(Utente example);
 }

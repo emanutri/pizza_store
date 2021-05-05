@@ -46,13 +46,11 @@ public class PizzastoreApplication implements CommandLineRunner {
 //					ruoloServiceInstance.cercaPerDescrizioneECodice("Administrator", "ROLE_ADMIN"));
 		}
 
-		if (utenteServiceInstance.findByUsernameAndPassword("user", "user") == null) {
-			Utente admin = new Utente("user", "user", "Antonio", "Verdi", new Date());
+		if (utenteServiceInstance.findByUsernameAndPassword("pizzaiolo", "pizzaiolo") == null) {
+			Utente admin = new Utente("pizzaiolo", "pizzaiolo", "Antonio", "Verdi", new Date());
 			admin.setStato(StatoUtente.ATTIVO);
-			admin.getRuoli().add(ruoloServiceInstance.cercaPerDescrizioneECodice("Classic User", "ROLE_CLASSIC_USER"));
+			admin.getRuoli().add(ruoloServiceInstance.cercaPerDescrizioneECodice("Pizzaiolo User", "PIZZAIOLO_ROLE"));
 			utenteServiceInstance.inserisciNuovo(admin);
-//			utenteServiceInstance.aggiungiRuolo(admin,
-//					ruoloServiceInstance.cercaPerDescrizioneECodice("Classic User", "ROLE_CLASSIC_USER"));
 		}
 
 		if (utenteServiceInstance.findByUsernameAndPassword("fattorino", "fattorino") == null) {

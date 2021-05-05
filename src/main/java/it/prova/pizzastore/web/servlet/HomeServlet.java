@@ -19,7 +19,7 @@ public class HomeServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String successResult = request.getParameter("successResult");
+		String successResult = request.getParameter("successMessage");
 		if (StringUtils.isNotBlank(successResult) && successResult.equalsIgnoreCase("SUCCESS"))
 			request.setAttribute("successMessage", "Operazione effettuata con successo");
 		
@@ -32,6 +32,7 @@ public class HomeServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		getRequestDispatcherIfUserLoggedInOrNot(request).forward(request, response);
 	}
 

@@ -24,30 +24,26 @@ public class CustomUtenteRepositoryImpl implements CustomUtenteRepository {
 		List<String> whereClauses = new ArrayList<String>();
 
 		StringBuilder queryBuilder = new StringBuilder(
-				"select u from Utente u left join fetch u.ordini left join fetch u.ruoli where u.id = u.id ");
+				"select u from Utente u left join fetch u.ruoli r where 1 = 1 ");
 
 		if (StringUtils.isNotEmpty(example.getUsername())) {
 			whereClauses.add(" u.username  like :username ");
 			paramaterMap.put("username", "%" + example.getUsername() + "%");
 		}
-		if (example.getNome() != null) {
-			whereClauses.add(" u.nome = :nome ");
-			paramaterMap.put("nome", example.getNome());
+		if (StringUtils.isNotEmpty(example.getNome())) {
+			whereClauses.add(" u.nome like :nome ");
+			paramaterMap.put("nome", "%" + example.getNome() + "%");
 		}
-		if (example.getCognome() != null) {
-			whereClauses.add(" u.cognome = :cognome ");
-			paramaterMap.put("cognome", example.getCognome());
+		if (StringUtils.isNotEmpty(example.getCognome())) {
+			whereClauses.add(" u.cognome like :cognome ");
+			paramaterMap.put("cognome", "%" + example.getCognome() + "%");
 		}
 		if (example.getDateCreated() != null) {
-			whereClauses.add("u.dateCreated >= :dateCreated ");
+			whereClauses.add(" u.dateCreated >= :dateCreated ");
 			paramaterMap.put("dateCreated", example.getDateCreated());
 		}
-		if (example.getOrdini() != null) {
-			whereClauses.add(" u.ordini = :ordini ");
-			paramaterMap.put("ordini", example.getOrdini());
-		}
-		if (example.getRuoli() != null) {
-			whereClauses.add(" u.ruoli = :ruoli ");
+		if (example.getRuoli() != null && !example.getRuoli().isEmpty()) {
+			whereClauses.add(" r in :ruoli ");
 			paramaterMap.put("ruoli", example.getRuoli());
 		}
 		if (example.getStato() != null) {

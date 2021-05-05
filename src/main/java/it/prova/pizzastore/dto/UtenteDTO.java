@@ -2,9 +2,7 @@ package it.prova.pizzastore.dto;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
@@ -24,8 +22,8 @@ public class UtenteDTO {
 	private String cognome;
 	private Date dateCreated;
 	private StatoUtente stato;
-	private Set<Ruolo> ruoli = new HashSet<>();
-	private Set<Ordine> ordini = new HashSet<>();
+	private List<RuoloDTO> ruoli = new ArrayList<RuoloDTO>();
+	private List<Ordine> ordini = new ArrayList<Ordine>();
 	private List<String> errors = new ArrayList<String>();
 
 	public UtenteDTO() {
@@ -51,7 +49,7 @@ public class UtenteDTO {
 	}
 
 	public UtenteDTO(Long id, String username, String password, String nome, String cognome, Date dateCreated,
-			StatoUtente stato, Set<Ruolo> ruolo, Set<Ordine> ordine) {
+			StatoUtente stato, List<RuoloDTO> ruolo, List<Ordine> ordine) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -64,7 +62,7 @@ public class UtenteDTO {
 	}
 
 	public UtenteDTO(Long id, String username, String password, String nome, String cognome, Date dateCreated,
-			StatoUtente stato, Set<Ruolo> ruolo) {
+			StatoUtente stato, List<RuoloDTO> ruolo) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
@@ -144,11 +142,11 @@ public class UtenteDTO {
 		this.stato = stato;
 	}
 
-	public Set<Ruolo> getRuoli() {
+	public List<RuoloDTO> getRuoli() {
 		return ruoli;
 	}
 
-	public void setRuoli(Set<Ruolo> ruoli) {
+	public void setRuoli(List<RuoloDTO> ruoli) {
 		this.ruoli = ruoli;
 	}
 
@@ -178,7 +176,7 @@ public class UtenteDTO {
 		}
 		this.setErrors(validationResult);
 	}
-	
+
 	public void validateRegistration() {
 		List<String> validationResult = new ArrayList<String>();
 
@@ -199,25 +197,37 @@ public class UtenteDTO {
 		return this.errors != null && !this.errors.isEmpty();
 	}
 
+	public List<Ruolo> buildRuoli() {
+		return this.ruoli.stream()
+				.map(ruoloDTO -> new Ruolo(ruoloDTO.getId(), ruoloDTO.getDescrizione(), ruoloDTO.getCodice()))
+				.collect(Collectors.toList());
+	}
+
+	public static List<RuoloDTO> buildRuoliDTOFromRuoliModel(Utente utenteModel) {
+		return utenteModel.getRuoli().stream()
+				.map(ruoli -> new RuoloDTO(ruoli.getId(), ruoli.getDescrizione(), ruoli.getCodice()))
+				.collect(Collectors.toList());
+	}
+
 	public Utente buildUtenteModel() {
 		return new Utente(this.id, this.username, this.password, this.nome, this.cognome, this.dateCreated, this.stato,
-				this.ruoli);
+				buildRuoli());
 	}
 
 	public static UtenteDTO buildUtenteDTOFromModel(Utente utenteModel) {
 		return new UtenteDTO(utenteModel.getId(), utenteModel.getUsername(), utenteModel.getPassword(),
 				utenteModel.getNome(), utenteModel.getCognome(), utenteModel.getDateCreated(), utenteModel.getStato(),
-				utenteModel.getRuoli(), utenteModel.getOrdini());
+				buildRuoliDTOFromRuoliModel(utenteModel), utenteModel.getOrdini());
 	}
 
 	public static UtenteDTO buildUtenteDTOFromModelNoOrders(Utente utenteModel) {
 		return new UtenteDTO(utenteModel.getId(), utenteModel.getUsername(), utenteModel.getPassword(),
 				utenteModel.getNome(), utenteModel.getCognome(), utenteModel.getDateCreated(), utenteModel.getStato(),
-				utenteModel.getRuoli());
+				buildRuoliDTOFromRuoliModel(utenteModel));
 	}
 
 	public static UtenteDTO createUtenteDTOFromParams(String usernameParam, String nomeParam, String cognomeParam,
-			String dateCreatedParam, String statoParam, Set<Ruolo> ruoliParam) {
+			String dateCreatedParam, String statoParam, List<RuoloDTO> ruoliParam) {
 
 		UtenteDTO result = new UtenteDTO(usernameParam, nomeParam, cognomeParam);
 		result.setStato(StringUtils.isBlank(statoParam) ? null : StatoUtente.traduciStatoUtente(statoParam));
@@ -227,7 +237,7 @@ public class UtenteDTO {
 	}
 
 	public static UtenteDTO createUtenteDTOFromInsertParams(String usernameParam, String password, String nomeParam,
-			String cognomeParam, Set<Ruolo> ruoliParam) {
+			String cognomeParam, List<RuoloDTO> ruoliParam) {
 
 		UtenteDTO result = UtenteDTO.createUtenteDTOFromParams(usernameParam, "creato", nomeParam, cognomeParam,
 				ruoliParam);
@@ -239,7 +249,7 @@ public class UtenteDTO {
 	}
 
 	public static UtenteDTO createUtenteDTOFromParams(String usernameParam, String passwordParam, String nomeParam,
-			String cognomeParam, Set<Ruolo> ruoliParam) {
+			String cognomeParam, List<RuoloDTO> ruoliParam) {
 
 		UtenteDTO result = new UtenteDTO(usernameParam, passwordParam, nomeParam, cognomeParam);
 		result.setRuoli(ruoliParam);
@@ -253,11 +263,11 @@ public class UtenteDTO {
 		}).collect(Collectors.toList());
 	}
 
-	public Set<Ordine> getOrdini() {
+	public List<Ordine> getOrdini() {
 		return ordini;
 	}
 
-	public void setOrdini(Set<Ordine> ordini) {
+	public void setOrdini(List<Ordine> ordini) {
 		this.ordini = ordini;
 	}
 

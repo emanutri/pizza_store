@@ -13,6 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import it.prova.pizzastore.dto.RuoloDTO;
 import it.prova.pizzastore.model.Ruolo;
 import it.prova.pizzastore.model.StatoUtente;
 import it.prova.pizzastore.service.RuoloService;
@@ -28,8 +29,9 @@ public class PrepareSearchUtenteServlet extends HttpServlet {
 			throws ServletException, IOException {
 
 		List<Ruolo> ruoli = ruoloService.listAllElements();
+		List<RuoloDTO> ruoliDTO = RuoloDTO.createRuoloDTOListFromModelList(ruoli);
 		List<String> stati = Stream.of(StatoUtente.values()).map(stato -> stato.name()).collect(Collectors.toList());
-		request.setAttribute("ruoli_list_attribute", ruoli);
+		request.setAttribute("ruoli_list_attribute", ruoliDTO);
 		request.setAttribute("stato_list_attribute", stati);
 
 		request.getRequestDispatcher("/utente/search.jsp").forward(request, response);

@@ -1,8 +1,8 @@
 package it.prova.pizzastore.model;
 
+import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,14 +39,14 @@ public class Utente {
 
 	// se non uso questa annotation viene gestito come un intero
 	@Enumerated(EnumType.STRING)
-	private StatoUtente stato = StatoUtente.CREATO;
+	private StatoUtente stato = null;
 
 	@ManyToMany
 	@JoinTable(name = "utente_ruolo", joinColumns = @JoinColumn(name = "utente_id", referencedColumnName = "ID"), inverseJoinColumns = @JoinColumn(name = "ruolo_id", referencedColumnName = "ID"))
-	private Set<Ruolo> ruoli = new HashSet<>(0);
+	private List<Ruolo> ruoli = new ArrayList<Ruolo>(0);
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "utente")
-	private Set<Ordine> ordini = new HashSet<Ordine>(0);
+	private List<Ordine> ordini = new ArrayList<Ordine>(0);
 
 	public Utente() {
 	}
@@ -65,13 +65,14 @@ public class Utente {
 	}
 
 	public Utente(Long id, String username, String password, String nome, String cognome, Date dateCreated,
-			StatoUtente stato, Set<Ruolo> ruoli) {
+			StatoUtente stato, List<Ruolo> ruoli) {
 		this.id = id;
 		this.username = username;
 		this.password = password;
 		this.nome = nome;
 		this.cognome = cognome;
 		this.dateCreated = dateCreated;
+		this.stato = stato;
 		this.ruoli = ruoli;
 	}
 
@@ -99,11 +100,11 @@ public class Utente {
 		this.password = password;
 	}
 
-	public Set<Ruolo> getRuoli() {
+	public List<Ruolo> getRuoli() {
 		return ruoli;
 	}
 
-	public void setRuoli(Set<Ruolo> ruoli) {
+	public void setRuoli(List<Ruolo> ruoli) {
 		this.ruoli = ruoli;
 	}
 
@@ -139,11 +140,11 @@ public class Utente {
 		this.stato = stato;
 	}
 
-	public Set<Ordine> getOrdini() {
+	public List<Ordine> getOrdini() {
 		return ordini;
 	}
 
-	public void setOrdini(Set<Ordine> ordini) {
+	public void setOrdini(List<Ordine> ordini) {
 		this.ordini = ordini;
 	}
 
@@ -154,6 +155,7 @@ public class Utente {
 		}
 		return false;
 	}
+
 	public boolean isPizzaiolo() {
 		for (Ruolo ruoloItem : ruoli) {
 			if (ruoloItem.getCodice().equals(Ruolo.ROLE_PIZZAIOLO))
@@ -161,6 +163,7 @@ public class Utente {
 		}
 		return false;
 	}
+
 	public boolean isFattorino() {
 		for (Ruolo ruoloItem : ruoli) {
 			if (ruoloItem.getCodice().equals(Ruolo.ROLE_FATTORINO))
@@ -168,7 +171,7 @@ public class Utente {
 		}
 		return false;
 	}
-	
+
 	@Override
 	public String toString() {
 		return "Utente: id=" + id + ", username=" + username + ", password=" + password + ", nome=" + nome

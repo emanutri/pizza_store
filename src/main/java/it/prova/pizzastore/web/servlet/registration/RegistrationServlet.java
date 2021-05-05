@@ -58,7 +58,7 @@ public class RegistrationServlet extends HttpServlet {
 			return;
 		}
 
-		response.sendRedirect(request.getContextPath()+"/HomeServlet?successResult=SUCCESS");
+		response.sendRedirect(request.getContextPath()+"/HomeServlet?successMessage=SUCCESS");
 	}
 
 }

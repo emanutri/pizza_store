@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="it">
 <head>
-	<jsp:include page="/header.jsp" />
+	<jsp:include page="../header.jsp" />
 	<title>Ricerca</title>
 	
 	<!-- style per le pagine diverse dalla index -->
@@ -10,7 +10,7 @@
     
 </head>
 <body>
-	<jsp:include page="/navbar.jsp" />
+	<jsp:include page="../navbar.jsp" />
 	
 	<main role="main" class="container">
 	
@@ -27,7 +27,7 @@
 		    </div>
 		    <div class='card-body'>
 
-					<form method="post" action="utente/ExecuteSearchUtenteServlet" >
+					<form method="post" action="ExecuteSearchUtenteServlet" >
 					
 						<div class="form-row">
 							<div class="form-group col-md-6">
@@ -52,16 +52,38 @@
                             		title="formato : gg/mm/aaaa"  name="dateCreated" >
 							</div>
 						</div>
-						
-						 
+						<br/>
+						<div class="form-row">	
+							<div class="form-group col-md-6">
+								<label for="stato">Stato</label>
+							    <select class="form-control" id="stato" name="stato">
+							    	<option value=""> -- Selezionare una voce -- </option>
+							      		<option value="ATTIVO">ATTIVO</option>
+							      		<option value="DISABILITATO">DISABILITATO </option>
+							      		<option value="CREATO">CREATO </option>
+							    </select>
+							</div>
 							
+								Ruoli:
+							<div class="form-check">
+								<c:forEach items="${ruoli_list_attribute }" var="ruoloItem">
+								  <input name="ruolo.id" class="form-check-input" type="checkbox" value="${ruoloItem.id}" id="defaultCheck${ruoloItem.id}">
+								  <label class="form-check-label" for="defaultCheck${ruoloItem.id}">
+								    ${ruoloItem.descrizione }
+								  </label>
+								  <br>
+								 </c:forEach>
+							</div>
+						</div>
 						<button type="submit" name="submit" value="submit" id="submit" class="btn btn-primary">Conferma</button>
 						<input class="btn btn-outline-warning" type="reset" value="Ripulisci">
 					
 
-						<a class="btn btn-outline-primary ml-2" href="utente/PrepareInsertUtenteServlet">Add New</a>
+						<a class="btn btn-outline-primary ml-2" href="PrepareInsertUtenteServlet">Add New</a>
 						
 					</form>
+
+		    
 		    
 			<!-- end card-body -->			   
 		    </div>
@@ -70,7 +92,7 @@
 	
 	<!-- end container -->	
 	</main>
-	<jsp:include page="/footer.jsp" />
+	<jsp:include page="../footer.jsp" />
 	
 </body>
 </html>

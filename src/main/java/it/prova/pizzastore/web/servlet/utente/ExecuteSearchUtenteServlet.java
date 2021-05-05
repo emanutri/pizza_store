@@ -1,6 +1,7 @@
 package it.prova.pizzastore.web.servlet.utente;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import it.prova.pizzastore.dto.RuoloDTO;
 import it.prova.pizzastore.dto.UtenteDTO;
+import it.prova.pizzastore.model.Utente;
 import it.prova.pizzastore.service.RuoloService;
 import it.prova.pizzastore.service.UtenteService;
 
@@ -33,17 +36,33 @@ public class ExecuteSearchUtenteServlet extends HttpServlet {
 		String nomeParam = request.getParameter("nome");
 		String cognomeParam = request.getParameter("cognome");
 		String usernameParam = request.getParameter("username");
-		String dataCreazioneParam = request.getParameter("dataDiCreazione");
+		String dataCreazioneParam = request.getParameter("dateCreated");
 		String statoParam = request.getParameter("stato");
 		String[] ruoloParam = request.getParameterValues("ruolo.id");
-
+		
+//		UtenteDTO utenteInstance = UtenteDTO.createUtenteDTOFromParams(usernameParam, nomeParam, cognomeParam,
+//				dataCreazioneParam, statoParam, RuoloDTO.createRuoloDTOListFromModelList(ruoloService.findByArrayIdParam(ruoloParam)));
+//
+//		System.out.println("testi di debugghi "+utenteInstance.getUsername());
+//		Utente utenteInstance = new Utente();
+//		utenteInstance.setUsername(usernameParam);
+//		utenteInstance.setNome(nomeParam);
+//		utenteInstance.setCognome(cognomeParam);
+//		utenteInstance.setDateCreated(Utility.parseDateFromString(dataCreazioneParam));
+		
+		
 		try {
+			
 			UtenteDTO utenteInstance = UtenteDTO.createUtenteDTOFromParams(usernameParam, nomeParam, cognomeParam,
-					dataCreazioneParam, statoParam, ruoloService.findByArrayIdParam(ruoloParam));
+					dataCreazioneParam, statoParam, RuoloDTO.createRuoloDTOListFromModelList(ruoloService.findByArrayIdParam(ruoloParam)));
 
-			request.setAttribute("utente_list_attribute", UtenteDTO
-					.createUtenteDTOListFromModelList(utenteService.findByExample(utenteInstance.buildUtenteModel())));
-
+//			request.setAttribute("utenti_list_attribute", UtenteDTO
+//					.createUtenteDTOListFromModelList(utenteService.findByExample(utenteInstance.buildUtenteModel())));
+			List<Utente> utentiInst = utenteService.findByExample(utenteInstance.buildUtenteModel());
+			request.setAttribute("utenti_list_attribute", UtenteDTO
+					.createUtenteDTOListFromModelList(utentiInst));
+			System.out.println(utentiInst);
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			

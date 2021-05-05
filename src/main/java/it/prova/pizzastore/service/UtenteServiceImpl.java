@@ -42,7 +42,7 @@ public class UtenteServiceImpl implements UtenteService {
 		repository.delete(utenteInstance);
 	}
 
-	@Transactional
+	@Transactional(readOnly = true)
 	public List<Utente> findByExample(Utente example) {
 		return repository.findByExample(example);
 	}
