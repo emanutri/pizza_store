@@ -44,17 +44,17 @@
 	      <div class="col-md-6">
 	        <h2>Gestione Ingredienti</h2>
 	        <p>Questa funzionalità è realtiva alla Gestione degli igredienti</p>
-	        <p><a class="btn btn-primary" href="PrepareSearchUtenteServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
+	        <p><a class="btn btn-primary" href="pizzaiolo/PrepareSearchIngredienteServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
 	      </div>
 	      <div class="col-md-6">
 	        <h2>Gestione pizze</h2>
 	        <p>Questa funzionalità è realtiva alla gestione delle pizze</p>
-	        <p><a class="btn btn-primary" href="PrepareSearchOrdineServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
+	        <p><a class="btn btn-primary" href="PrepareSearchPizzaServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
 	      </div>
 	      <div class="col-md-6">
 	        <h2>Gestione Clienti</h2>
 	        <p>Questa funzionalità è realtiva alla Gestione dei clienti</p>
-	        <p><a class="btn btn-primary" href="PrepareSearchUtenteServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
+	        <p><a class="btn btn-primary" href="PrepareSearchClienteServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
 	      </div>
 	    </div>
 	    
@@ -62,12 +62,12 @@
 	      <div class="col-md-6">
 	        <h2>Nuovo Ordine</h2>
 	        <p>Questa funzionalità è realtiva alla creazione degli ordini</p>
-	        <p><a class="btn btn-primary" href="PrepareSearchOrdineServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
+	        <p><a class="btn btn-primary" href="PrepareInsertOrdineServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
 	      </div>
 	      <div class="col-md-6">
 	        <h2>Gestione Ordini</h2>
 	        <p>Questa funzionalità è realtiva alla Gestione degli ordini</p>
-	        <p><a class="btn btn-primary" href="PrepareSearchUtenteServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
+	        <p><a class="btn btn-primary" href="PrepareSearchOrdineServlet" role="button">Vai alla Funzionalità &raquo;</a></p>
 	      </div>
 	    </div>
 	    

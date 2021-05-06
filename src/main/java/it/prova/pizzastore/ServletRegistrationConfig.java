@@ -6,6 +6,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import it.prova.pizzastore.web.servlet.auth.LoginServlet;
+import it.prova.pizzastore.web.servlet.pizzaiolo.ExecuteDeleteIngredienteServlet;
+import it.prova.pizzastore.web.servlet.pizzaiolo.ExecuteInsertIngredienteServlet;
+import it.prova.pizzastore.web.servlet.pizzaiolo.ExecuteListIngredienteServlet;
+import it.prova.pizzastore.web.servlet.pizzaiolo.ExecuteModificaIngredienteServlet;
+import it.prova.pizzastore.web.servlet.pizzaiolo.ExecuteSearchIngredienteServlet;
+import it.prova.pizzastore.web.servlet.pizzaiolo.ExecuteVisualizzaIngredienteServlet;
+import it.prova.pizzastore.web.servlet.pizzaiolo.PrepareDeleteIngredienteServlet;
+import it.prova.pizzastore.web.servlet.pizzaiolo.PrepareInsertIngredienteServlet;
+import it.prova.pizzastore.web.servlet.pizzaiolo.PrepareModificaIngredienteServlet;
+import it.prova.pizzastore.web.servlet.pizzaiolo.PrepareSearchIngredienteServlet;
 import it.prova.pizzastore.web.servlet.registration.PrepareRegistrationServlet;
 import it.prova.pizzastore.web.servlet.registration.RegistrationServlet;
 import it.prova.pizzastore.web.servlet.utente.ExecuteCambiaStatoUtenteServlet;
@@ -50,7 +60,7 @@ public class ServletRegistrationConfig {
 	}
 
 	// -----------------------utente------------------------------
-	
+
 	@Autowired
 	private PrepareSearchUtenteServlet prepareSearchUtenteServlet;
 	@Autowired
@@ -111,25 +121,118 @@ public class ServletRegistrationConfig {
 				executeInsertUtenteServlet, "/utente/ExecuteInsertUtenteServlet");
 		return bean;
 	}
-	
+
 	@Bean
 	public ServletRegistrationBean<PrepareModificaUtenteServlet> createPrepareModificaUtenteServletBean() {
 		ServletRegistrationBean<PrepareModificaUtenteServlet> bean = new ServletRegistrationBean<PrepareModificaUtenteServlet>(
 				prepareModificaUtenteServlet, "/utente/PrepareModificaUtenteServlet");
 		return bean;
 	}
-	
+
 	@Bean
 	public ServletRegistrationBean<ExecuteModificaUtenteServlet> createExecuteModificaUtenteServletBean() {
 		ServletRegistrationBean<ExecuteModificaUtenteServlet> bean = new ServletRegistrationBean<ExecuteModificaUtenteServlet>(
 				executeModificaUtenteServlet, "/utente/ExecuteModificaUtenteServlet");
 		return bean;
 	}
-	
+
 	@Bean
 	public ServletRegistrationBean<ExecuteCambiaStatoUtenteServlet> createExecuteCambiaStatoUtenteServletBean() {
 		ServletRegistrationBean<ExecuteCambiaStatoUtenteServlet> bean = new ServletRegistrationBean<ExecuteCambiaStatoUtenteServlet>(
 				executeCambiaStatoUtenteServlet, "/utente/ExecuteCambiaStatoUtenteServlet");
+		return bean;
+	}
+
+	// ---------------------------ingrediente-------------------------------------
+
+	@Autowired
+	private PrepareSearchIngredienteServlet prepareSearchIngredienteServlet;
+	@Autowired
+	private ExecuteSearchIngredienteServlet executeSearchIngredienteServlet;
+	@Autowired
+	private PrepareInsertIngredienteServlet prepareInsertIngredienteServlet;
+	@Autowired
+	private ExecuteInsertIngredienteServlet executeInsertIngredienteServlet;
+	@Autowired
+	private ExecuteListIngredienteServlet executeListIngredienteServlet;
+	@Autowired
+	private ExecuteVisualizzaIngredienteServlet executeVisualizzaIngredienteServlet;
+	@Autowired
+	private PrepareModificaIngredienteServlet prepareModificaIngredienteServlet;
+	@Autowired
+	private ExecuteModificaIngredienteServlet executeModificaIngredienteServlet;
+	@Autowired
+	private PrepareDeleteIngredienteServlet prepareDeleteIngredienteServlet;
+	@Autowired
+	private ExecuteDeleteIngredienteServlet executeDeleteIngredienteServlet;
+
+	@Bean
+	public ServletRegistrationBean<PrepareSearchIngredienteServlet> createPrepareSearchIngredienteServletBean() {
+		ServletRegistrationBean<PrepareSearchIngredienteServlet> bean = new ServletRegistrationBean<PrepareSearchIngredienteServlet>(
+				prepareSearchIngredienteServlet, "/pizzaiolo/PrepareSearchIngredienteServlet");
+		return bean;
+	}
+
+	@Bean
+	public ServletRegistrationBean<ExecuteSearchIngredienteServlet> createExecuteSearchIngredienteServletBean() {
+		ServletRegistrationBean<ExecuteSearchIngredienteServlet> bean = new ServletRegistrationBean<ExecuteSearchIngredienteServlet>(
+				executeSearchIngredienteServlet, "/pizzaiolo/ExecuteSearchIngredienteServlet");
+		return bean;
+	}
+
+	@Bean
+	public ServletRegistrationBean<PrepareInsertIngredienteServlet> createPrepareInsertIngredienteServletBean() {
+		ServletRegistrationBean<PrepareInsertIngredienteServlet> bean = new ServletRegistrationBean<PrepareInsertIngredienteServlet>(
+				prepareInsertIngredienteServlet, "/pizzaiolo/PrepareInsertIngredienteServlet");
+		return bean;
+	}
+
+	@Bean
+	public ServletRegistrationBean<ExecuteInsertIngredienteServlet> createExecuteInsertIngredienteServletBean() {
+		ServletRegistrationBean<ExecuteInsertIngredienteServlet> bean = new ServletRegistrationBean<ExecuteInsertIngredienteServlet>(
+				executeInsertIngredienteServlet, "/pizzaiolo/ExecuteInsertIngredienteServlet");
+		return bean;
+	}
+
+	@Bean
+	public ServletRegistrationBean<ExecuteListIngredienteServlet> createExecuteListIngredienteServletBean() {
+		ServletRegistrationBean<ExecuteListIngredienteServlet> bean = new ServletRegistrationBean<ExecuteListIngredienteServlet>(
+				executeListIngredienteServlet, "/pizzaiolo/ExecuteListIngredienteServlet");
+		return bean;
+	}
+
+	@Bean
+	public ServletRegistrationBean<ExecuteVisualizzaIngredienteServlet> createExecuteVisualizzaIngredienteServletBean() {
+		ServletRegistrationBean<ExecuteVisualizzaIngredienteServlet> bean = new ServletRegistrationBean<ExecuteVisualizzaIngredienteServlet>(
+				executeVisualizzaIngredienteServlet, "/pizzaiolo/ExecuteVisualizzaIngredienteServlet");
+		return bean;
+	}
+
+	@Bean
+	public ServletRegistrationBean<PrepareModificaIngredienteServlet> createPrepareModificaIngredienteServletBean() {
+		ServletRegistrationBean<PrepareModificaIngredienteServlet> bean = new ServletRegistrationBean<PrepareModificaIngredienteServlet>(
+				prepareModificaIngredienteServlet, "/pizzaiolo/PrepareModificaIngredienteServlet");
+		return bean;
+	}
+
+	@Bean
+	public ServletRegistrationBean<ExecuteModificaIngredienteServlet> createExecuteModificaIngredienteServletBean() {
+		ServletRegistrationBean<ExecuteModificaIngredienteServlet> bean = new ServletRegistrationBean<ExecuteModificaIngredienteServlet>(
+				executeModificaIngredienteServlet, "/pizzaiolo/ExecuteModificaIngredienteServlet");
+		return bean;
+	}
+
+	@Bean
+	public ServletRegistrationBean<PrepareDeleteIngredienteServlet> createPrepareDeleteIngredienteServletBean() {
+		ServletRegistrationBean<PrepareDeleteIngredienteServlet> bean = new ServletRegistrationBean<PrepareDeleteIngredienteServlet>(
+				prepareDeleteIngredienteServlet, "/pizzaiolo/PrepareDeleteIngredienteServlet");
+		return bean;
+	}
+
+	@Bean
+	public ServletRegistrationBean<ExecuteDeleteIngredienteServlet> createExecuteDeleteIngredienteServletBean() {
+		ServletRegistrationBean<ExecuteDeleteIngredienteServlet> bean = new ServletRegistrationBean<ExecuteDeleteIngredienteServlet>(
+				executeDeleteIngredienteServlet, "/pizzaiolo/ExecuteDeleteIngredienteServlet");
 		return bean;
 	}
 }

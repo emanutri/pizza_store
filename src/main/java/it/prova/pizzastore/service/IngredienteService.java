@@ -16,4 +16,6 @@ public interface IngredienteService {
 	public void rimuovi(Ingrediente ingredienteInstance);
 
 	public List<Ingrediente> findByExample(Ingrediente example);
+	
+	public Ingrediente caricaSingoloElementoConPizze(Long id);
 }

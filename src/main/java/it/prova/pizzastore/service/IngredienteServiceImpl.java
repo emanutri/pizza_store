@@ -24,6 +24,11 @@ public class IngredienteServiceImpl implements IngredienteService {
 	public Ingrediente caricaSingoloElemento(Long id) {
 		return repository.findById(id).orElse(null);
 	}
+	
+	@Transactional(readOnly = true)
+	public Ingrediente caricaSingoloElementoConPizze(Long id) {
+		return repository.findOneEager(id).orElse(null);
+	}
 
 	@Transactional
 	public void aggiorna(Ingrediente ingredienteInstance) {

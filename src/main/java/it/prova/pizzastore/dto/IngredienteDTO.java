@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.math.NumberUtils;
 
 import it.prova.pizzastore.model.Ingrediente;
 
@@ -20,6 +21,20 @@ public class IngredienteDTO {
 		this.descrizione = descrizione;
 		this.prezzo = prezzo;
 		this.codice = codice;
+	}
+
+	public IngredienteDTO(String descrizione, Double prezzo, String codice) {
+		this.descrizione = descrizione;
+		this.prezzo = prezzo;
+		this.codice = codice;
+	}
+
+	public IngredienteDTO(String descrizione, String codice) {
+		this.descrizione = descrizione;
+		this.codice = codice;
+	}
+
+	public IngredienteDTO() {
 	}
 
 	public Long getId() {
@@ -88,11 +103,17 @@ public class IngredienteDTO {
 				ingredienteModel.getPrezzo(), ingredienteModel.getCodice());
 	}
 
-	public static IngredienteDTO createIngredienteDTOFromParams(String idParam, String descrizioneParam,
-			String prezzoParam, String codiceParam) {
+	public static IngredienteDTO createIngredienteDTOFromParams(String descrizioneParam, String prezzoParam,
+			String codiceParam) {
 
-		IngredienteDTO result = new IngredienteDTO(Long.parseLong(idParam), descrizioneParam,
-				Double.parseDouble(prezzoParam), codiceParam);
+		IngredienteDTO result = null;
+
+		if (NumberUtils.isCreatable(prezzoParam)) {
+			result = new IngredienteDTO(descrizioneParam, Double.parseDouble(prezzoParam), codiceParam);
+
+		} else {
+			result = new IngredienteDTO(descrizioneParam, codiceParam);
+		}
 		return result;
 	}
 
